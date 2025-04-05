@@ -212,7 +212,7 @@
             if (current_index % 3 == 0){
                 window.location.href = `sample.html?index=${current_index}&time=${time}`;
             }
-            if (current_index == questions.length){
+            else if (current_index == questions.length){
                 window.location.href = `finalscreen.html?wrong_answers=${total_wrongs}&time=${time}`;
             }
             else{
