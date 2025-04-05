@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <button id = "quest-button">drank swalalala</button>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const current_index = urlParams.get("index");
+        const quest_button = document.getElementById("quest-button");
+        let time = urlParams.get("time");
+
+        quest_button.addEventListener('click', function(event){
+            window.location.href = `questions.html?index=${current_index}&time=${time}`;
+        });
+
+
+        setInterval(function(){
+            time++
+            console.log(time);
+        }, 1000);
+    </script>
+    
+</body>
+</html>
