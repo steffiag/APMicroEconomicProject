@@ -215,7 +215,9 @@
             if (current_index == questions.length){
                 window.location.href = `finalscreen.html?wrong_answers=${total_wrongs}&time=${time}`;
             }
-            loadInfo(current_index);
+            else{
+                loadInfo(current_index);
+            }
         });
 
         document.addEventListener("keydown", function(event){

@@ -73,6 +73,7 @@
     }
     let minutes = Math.floor(time/60);
     let seconds = time%60;
+    let timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
     document.getElementById("wrong").innerHTML = wrong;
     document.getElementById("min").innerHTML = minutes;
     document.getElementById("sec").innerHTML = seconds;
