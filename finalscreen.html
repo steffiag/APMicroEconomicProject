@@ -57,7 +57,7 @@
         <p>Congrats! You're now an economist!</p>
         
         <p>In total, you made <span id = "wrong"></span> wrong answers.</p>
-        <p>Total Time: <span id = "min"></span>:<span id = "sec"></span></p>
+        <p>Total Time: <span id = "time"></span></p>
 
         <a href="index.html">
             <button id = "repeat">Play again!</button>
@@ -75,8 +75,7 @@
     let seconds = time%60;
     let timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
     document.getElementById("wrong").innerHTML = wrong;
-    document.getElementById("min").innerHTML = minutes;
-    document.getElementById("sec").innerHTML = seconds;
+    document.getElementById("time").innerHTML = timeString;
 </script>
 </body>
 </html>
