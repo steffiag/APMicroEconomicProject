@@ -1,237 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
-    <style>
-        body{
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family:"Roboto Condensed", sans-serif;
-            
-        }
-        .question-box{
-            border: 2px solid black;
-            width: 50%;
-            text-align: center;
-            padding:5%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            
-            
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Econcup : Unit 2 Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body{
+display:flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+font-family: "Silkscreen", sans-serif;
+font-weight: 400;
+font-style: normal;
+}
+.question-box{
+border: 2px solid black;
+width: 50%;
+text-align: center;
+padding:5%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
 
-        .answer-box{
-            border: 2px solid black;
-            width: 50%;
-            text-align: center;
-            font-size: 15px;
-            outline:none;
-            border-radius:5px;
-            background-color: white;
-            
-        }
-        .character, .boss{
-            display:flex;
-            justify-content: center;
-        }
-        img{
-            width: 35vh;
-            height:35vh;
-        }
+.answer-box{
+border: 2px solid black;
+width: 50%;
+text-align: center;
+font-size: 15px;
+outline:none;
+border-radius:5px;
+background-color: white;
+}
+.character, .boss{
+display:flex;
+justify-content: center;
+}
+img{
+width: 35vh;
+height:35vh;
+}
 
-        .next input{
-            position: absolute;
-            top: 65%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            width:5%;
-            height:4%;
-            background-image:url("images-steff/arrow.png");
-            border:2px solid black;
-            border-radius: 3px;
-            background-size:cover;
-            background-color: white;
-            padding-bottom:2%;
-            display:none;
-        }
+.next input{
+position: absolute;
+top: 65%;
+transform: translate(-50%, -50%);
+z-index: 2;
+width:5%;
+height:4%;
+background-image:url("images-steff/arrow.png");
+border:2px solid black;
+border-radius: 3px;
+background-size:cover;
+background-color: white;
+padding-bottom:2%;
+display:none;
+}
 
-        .next input:hover{
-            position: absolute;
-            top: 65%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            width:5%;
-            height:4%;
-            background-image:url("images-steff/arrow.png");
-            border:2px solid black;
-            border-radius: 3px;
-            background-size:cover;
-            background-color: #d3e5f6;
-            padding-bottom:2%;
-        }
+.next input:hover{
+position: absolute;
+top: 65%;
+transform: translate(-50%, -50%);
+z-index: 2;
+width:5%;
+height:4%;
+background-image:url("images-steff/arrow.png");
+border:2px solid black;
+border-radius: 3px;
+background-size:cover;
+background-color: #d3e5f6;
+padding-bottom:2%;
+}
 
-        
-    </style>
+</style>
 </head>
 <body>
-    <img src="images-steff/stickman-1.png" alt="">
-    <div class="question-box">
+<img src="images-steff/stickman-1.png" alt="">
+<div class="question-box">
 
-        <p id = "question"></p>
-        <p id = "choices"></p>
-        <br>
-        <input class = "answer-box" type="text" id = "answer" placeholder = "Choose the appropriate letter">
-    </div>
-    <div class="next">
-        <input type="button" id = "next">
-    </div>
-    <div class="boss">
-        <img src="images-steff/stickman-1.png" alt="">
-    </div>
-    <script>
-        let current_index=0;
-        let time = 0;
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams != ""){
-            current_index = urlParams.get("index");
-            time = urlParams.get("time");
-        }
-        let total_wrongs = 0;
-    
-        let questions = [
-        "What is the capital of France?",
-        "Who wrote 'To Kill a Mockingbird'?",
-        "What is the chemical symbol for water?",
-        "Which planet is known as the Red Planet?",
-        "What is the largest mammal on Earth?",
-        "What is the hardest natural substance on Earth?",
-        "What is the square root of 144?",
-        "Who painted the Mona Lisa?",
-        "What is the main ingredient in guacamole?",
-        "What is the smallest country in the world?"
-        ];
+<p id = "question"></p>
+<p id = "choices"></p>
+<br>
+<input class = "answer-box" type="text" id = "answer" placeholder = "Choose the appropriate letter">
+</div>
+<div class="next">
+<input type="button" id = "next">
+</div>
+<div class="boss">
+<img src="images-steff/stickman-1.png" alt="">
+</div>
+<script>
+let current_index=0;
+let time = 0;
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams != ""){
+current_index = urlParams.get("index");
+time = urlParams.get("time");
+}
+let total_wrongs = 0;
+let questions = [
+"What is the capital of France?",
+"Who wrote 'To Kill a Mockingbird'?",
+"What is the chemical symbol for water?",
+"Which planet is known as the Red Planet?",
+"What is the largest mammal on Earth?",
+"What is the hardest natural substance on Earth?",
+"What is the square root of 144?",
+"Who painted the Mona Lisa?",
+"What is the main ingredient in guacamole?",
+"What is the smallest country in the world?"
+];
 
-        let choices = [
-            "A. Berlin<br><br>B. Madrid<br><br>C. Paris<br><br>D. Rome",
-            "A. George Orwell<br><br>B. Harper Lee<br><br>C. Mark Twain<br><br>D. J.K. Rowling",
-            "A. H2O<br><br>B. O2<br><br>C. CO2<br><br>D. N2",
-            "A. Venus<br><br>B. Mars<br><br>C. Jupiter<br><br>D. Saturn",
-            "A. Blue whale<br><br>B. Elephant<br><br>C. Giraffe<br><br>D. Shark",
-            "A. Diamond<br><br>B. Gold<br><br>C. Iron<br><br>D. Platinum",
-            "A. 10<br><br>B. 12<br><br>C. 14<br><br>D. 16",
-            "A. Pablo Picasso<br><br>B. Vincent van Gogh<br><br>C. Claude Monet<br><br>D. Leonardo da Vinci",
-            "A. Avocado<br><br>B. Tomato<br><br>C. Onion<br><br>D. Garlic",
-            "A. Monaco<br><br>B. Vatican City<br><br>C. Nauru<br><br>D. San Marino"
-        ];
+let choices = [
+"A. Berlin<br><br>B. Madrid<br><br>C. Paris<br><br>D. Rome",
+"A. George Orwell<br><br>B. Harper Lee<br><br>C. Mark Twain<br><br>D. J.K. Rowling",
+"A. H2O<br><br>B. O2<br><br>C. CO2<br><br>D. N2",
+"A. Venus<br><br>B. Mars<br><br>C. Jupiter<br><br>D. Saturn",
+"A. Blue whale<br><br>B. Elephant<br><br>C. Giraffe<br><br>D. Shark",
+"A. Diamond<br><br>B. Gold<br><br>C. Iron<br><br>D. Platinum",
+"A. 10<br><br>B. 12<br><br>C. 14<br><br>D. 16",
+"A. Pablo Picasso<br><br>B. Vincent van Gogh<br><br>C. Claude Monet<br><br>D. Leonardo da Vinci",
+"A. Avocado<br><br>B. Tomato<br><br>C. Onion<br><br>D. Garlic",
+"A. Monaco<br><br>B. Vatican City<br><br>C. Nauru<br><br>D. San Marino"
+];
 
-        let answers = [
-            "C", // Paris
-            "B", // Harper Lee
-            "A", // H2O
-            "B", // Mars
-            "A", // Blue whale
-            "A", // Diamond
-            "B", // 12
-            "D", // Leonardo da Vinci
-            "A", // Avocado
-            "B"  // Vatican City
-        ];
+let answers = [
+"C", // Paris
+"B", // Harper Lee
+"A", // H2O
+"B", // Mars
+"A", // Blue whale
+"A", // Diamond
+"B", // 12
+"D", // Leonardo da Vinci
+"A", // Avocado
+"B" // Vatican City
+];
 
-        const question_container = document.getElementById("question");
-        const choices_container = document.getElementById("choices");
-        let answers_container = document.getElementById("answer");
-        let next_button = document.getElementById("next");
-        let wrong_answer_count = 0;
-        let valid = ["A", "B", "C", "D"]
-        
+const question_container = document.getElementById("question");
+const choices_container = document.getElementById("choices");
+let answers_container = document.getElementById("answer");
+let next_button = document.getElementById("next");
+let wrong_answer_count = 0;
+let valid = ["A", "B", "C", "D"]
 
-        function loadInfo(index){
-            resetItems();
-            question_container.innerHTML = questions[current_index];
-            choices_container.innerHTML = choices[current_index];
-        }
+function loadInfo(index){
+resetItems();
+question_container.innerHTML = questions[current_index];
+choices_container.innerHTML = choices[current_index];
+}
 
-        function checkAnswer(answer){
-            if (answer == answers[current_index]){
-                // correct
-                answers_container.style.backgroundColor = "#D6F6D5";
-                answers_container.style.borderColor = "#00c04b";
-                next_button.style.display = "block"
-                wrong_answer_count = 0;
-            }
-            else{
-                answers_container.style.backgroundColor = "#FF8886";
-                answers_container.style.borderColor = "#FF0000"
-                wrong_answer_count+=1;
-                total_wrongs +=1;
-                setTimeout(function(){
-                    answers_container.style.backgroundColor = "#FFFFFF";
-                    answers_container.style.borderColor = "#000000"
-                    
-                }, 750)
-                
-            }
-            if (wrong_answer_count >= 3){
-                answers_container.value = "";
-                alert(wrong_answer_count + " wrong answers?! Wait 30 seconds")
-                answers_container.disabled = true;
-                setTimeout(function(){
-                    answers_container.disabled = false;
-                    answers_container.style.backgroundColor = "#FFFFFF";
-                    answers_container.style.borderColor = "#000000"
-                }, 30000)
-            }
-        }
+function checkAnswer(answer){
+if (answer == answers[current_index]){
+// correct
+answers_container.style.backgroundColor = "#D6F6D5";
+answers_container.style.borderColor = "#00c04b";
+next_button.style.display = "block"
+wrong_answer_count = 0;
+}
+else{
+answers_container.style.backgroundColor = "#FF8886";
+answers_container.style.borderColor = "#FF0000"
+wrong_answer_count+=1;
+total_wrongs +=1;
+setTimeout(function(){
+answers_container.style.backgroundColor = "#FFFFFF";
+answers_container.style.borderColor = "#000000"
+}, 750)
+}
+if (wrong_answer_count >= 3){
+answers_container.value = "";
+alert(wrong_answer_count + " wrong answers?! Wait 30 seconds")
+answers_container.disabled = true;
+setTimeout(function(){
+answers_container.disabled = false;
+answers_container.style.backgroundColor = "#FFFFFF";
+answers_container.style.borderColor = "#000000"
+}, 30000)
+}
+}
 
-        function resetItems(){
-            question_container.innerHTML = "";
-            choices_container.innerHTML = "";
-            answers_container.style.backgroundColor = "#FFFFFF";
-            answers_container.style.borderColor = "#000000"
-            next_button.style.display = "none"
-            answers_container.value = "";
+function resetItems(){
+question_container.innerHTML = "";
+choices_container.innerHTML = "";
+answers_container.style.backgroundColor = "#FFFFFF";
+answers_container.style.borderColor = "#000000"
+next_button.style.display = "none"
+answers_container.value = "";
 
-        }
+}
 
-        setInterval(function(){
-            time++
-            console.log(time);
-        }, 1000);
+setInterval(function(){
+time++
+console.log(time);
+}, 1000);
 
-        next_button.addEventListener('click', function(event){
-            current_index++;
-            if (current_index % 3 == 0){
-                window.location.href = `sample.html?index=${current_index}&time=${time}`;
-            }
-            else if (current_index == questions.length){
-                window.location.href = `finalscreen.html?wrong_answers=${total_wrongs}&time=${time}`;
-            }
-            else{
-                loadInfo(current_index);
-            }
-        });
+next_button.addEventListener('click', function(event){
+current_index++;
+if (current_index % 3 == 0){
+window.location.href = `dialogue.html?index=${current_index}&time=${time}`;
+}
+if (current_index == questions.length){
+window.location.href = `finalscreen.html?wrong_answers=${total_wrongs}&time=${time}`;
+}
+loadInfo(current_index);
+});
 
-        document.addEventListener("keydown", function(event){
-            if (event.key == "Enter"){
-                const answer = answers_container.value.toUpperCase();
-                if (!answers.includes(answer)){
-                    alert("Type a valid answer")
-                }
-                else{
-                    checkAnswer(answer);
-                }
-            }
-        });
-        loadInfo(current_index);
-    </script> 
+document.addEventListener("keydown", function(event){
+if (event.key == "Enter"){
+const answer = answers_container.value.toUpperCase();
+if (!answers.includes(answer)){
+alert("Type a valid answer")
+}
+else{
+checkAnswer(answer);
+}
+}
+});
+loadInfo(current_index);
+</script>
 </body>
 </html>
